@@ -15,10 +15,9 @@ A final JSON report is generated with classification, pass/fail status, and expl
 
 - Parses all links in an HTML page
 - Extracts:
+  - aria-label
   - link text
-  - aria-label (only if text is empty)
   - parent `<p>` context
-  - nearest heading context
 - Sends all links to OpenAI in a single batch
 - Classifies accessibility clarity following **WCAG 2.4.4**
 - Returns structured JSON with:
@@ -72,14 +71,12 @@ python3 parse_html.py
 
 ---
 
-## 💼 Future Improvements & Features
+## 🚀 Future Improvements & Features
 
 Currently, the script evaluates links primarily based on their visible text or `aria-label` if the text is empty. Some potential enhancements include:
 
-- **Check for icon-only links with `sr-only` text** – ensure links that use only icons are still accessible.  
+- **Use OpenAI Batch API for large HTML files** – When processing hundreds or thousands of links, a single request may exceed token limits. The Batch API could be used to split classification tasks efficiently and reduce cost at scale.
 - **Check links containing images** – evaluate `alt` text or contextual description.  
-- **Detect and handle hidden links** – identify links that are visually hidden but still focusable.  
 - **Processing a specific url** – allow scanning a specific url instead of a .html file.  
-- **Integration with CI/CD** – automatically evaluate links in web projects during deployment.  
 - **Advanced contextual analysis** – consider surrounding headings, sections, or navigation landmarks for better classification.  
-- **Performance optimizations** – cache results, if a link has already been parsed it should be skipped.  
+- **Performance optimizations** – cache results.  
