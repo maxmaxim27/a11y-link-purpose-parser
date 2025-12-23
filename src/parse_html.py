@@ -54,7 +54,7 @@ def get_accessible_name(link):
     if title and title.strip():
         return normalize(title), "title"
     
-    return ""
+    return "none", "none"
 
 # extract parent p for context
 def get_context_simple(link):
